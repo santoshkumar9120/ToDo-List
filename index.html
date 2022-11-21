@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h1>ToDoList</h1>
+    <title>ToDo List</title>
+    <style>
+      *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+body{
+    height: 100%;
+    background-color: #aaeefa;
+    box-sizing: border-box;
+    user-select: none;
+}
+h1{
+    text-align: center;
+    margin: 1rem 0 3rem;
+    color: #ff7d04;
+}
+.title{
+    color: #ff6363;
+    font-weight: 500;
+    font-size: 120px;
+}
+.inputDiv{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.input{
+    padding: 0.5rem 1rem;
+    outline: none;
+    height: 50px;
+    border-radius: 10px;
+    width: 320px;
+    margin: .40rem;
+    transition: 0.5s;
+    font-size: 1.15rem;
+}
+.add{
+    outline: none;
+    height: 40px;
+    width: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #Ffbd69;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+    margin: 0.25rem;
+    user-select: none;
+}
+.add:hover{
+    background: #ff7d04;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2rem;
+    user-select: none;
+}
+.item input{
+    background: #ddf9fc;
+    outline: none;
+    border: 3px solid#f5e2fd;
+    border-radius: 10px;
+    padding: 10px;
+    color: #000;
+    margin-top: 15px;
+    font-size: 20px;
+    width: 315px;
+    user-select: none;
+}
+.remove{
+    background: none;
+    outline: none;
+    border: none;
+    color: #ff0123;
+    font-size: 3rem;
+    margin-left: 30px;
+    cursor: pointer;
+    user-select: none;
+}
+.remove_btn{
+margin-top: 3px;
+color: #fff;
+text-transform: uppercase;
+text-decoration: none;
+background: #ff6363;
+padding: 20px;
+border-radius: 5px;
+display: inline-block;
+text-align: center;
+border:10px;
+font-size: 15px;
+transition: all 0.4 ease 0s;
+height: 55px;
+width: 150px;
+margin-left: 600px;
+user-select: none;
+
+}
+.remove_btn:hover{
+    background: #ff0123;
+    letter-spacing: 1px;
+    -box-shadow:5px 40px rgb(133, 111, 111)
+    transition all 0.4s ease 0s;
+    user-select: none;
+    
+    
+}  
+    </style>
+    
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+</head>
+<body>
+    <div class="hii">
+        <h1><span class="title"><i class="fas fa-clipboard-list"></i></span></h1>
+        <div class="inputDiv">
+            <input type="text" class="input" placeholder="Enter here">
+            <button class="add"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="container">
+
+        </div>
+    </div>
+    <div class="button-cont" aligen="center"><a class="remove_btn" onclick="removeAll()">Remove all</a></div>
+    <script>
+        var container=document.querySelector('.container');
+var value1=document.querySelector('.input');
+var add1=document.querySelector('.add');
+class item{
+    constructor(name){
+        this.create(name)
+    }
+    create(name){
+        var l1=document.createElement('div');
+        l1.classList.add('item');
+        var input=document.createElement('input');
+        input.type="text";
+        input.disabled=true;
+        input.value=name;
+        input.classList.add('item_input');
+        var remove=document.createElement('button');
+        remove.classList.add('remove');
+        remove.innerHTML='<i class="fas fa-trash"></i>';
+        remove.addEventListener('click',()=>this.remove(l1));
+        container.appendChild(l1);
+        l1.appendChild(input);
+        l1.appendChild(remove);
+    }
+    remove(l1){
+        container.removeChild(l1);
+    }
+}
+add1.addEventListener('click',check);
+window.addEventListener('keydown',(e)=>{
+    if(e.which==13){
+        check();
+    }
+})
+function check(){
+    if(value1.value!=""){
+        new item(value1.value);
+        value1.value="";
+    }
+}
+function removeAll(){
+    document.querySelector('.container').innerHTML="";
+}
+
+    </script>
+</body>
+</html>
